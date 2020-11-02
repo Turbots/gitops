@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: order-service
-          image: harbor.hubau.cloud/library/order-service:b3.20201102.094421
+          image: harbor.hubau.cloud/library/order-service@sha256:37960db1d84acf33f0fcecc674772be1cc1cb8ae2ac3ae109dedb18a656b9747
           imagePullPolicy: Always
           env:
             - name: NODE_NAME
