@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    kubernetes.io/ingress.class: contour
+    kubernetes.io/tls-acme: "true"
+spec:
+  rules:
+    - host: zen.hubau.cloud
+      http:
+        paths:
+          - backend:
+              serviceName: zen
+              servicePort: http
+            path: /
+  tls:
+    - hosts:
+        - zen.hubau.cloud
+      secretName: zen-ingress
