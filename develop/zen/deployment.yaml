@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: zen
-          image: --
+          image: harbor.hubau.cloud/library/zen@sha256:5e5045b81bf6f11a243cbdc89ba1df3cf2325f93fea0e71e3ab0036a8c56bee9
           imagePullPolicy: Always
           env:
             - name: NODE_NAME
