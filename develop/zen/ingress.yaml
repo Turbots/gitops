@@ -9,14 +9,10 @@ metadata:
     kubernetes.io/tls-acme: "true"
 spec:
   rules:
-    - host: zen.hubau.cloud
+    - host: zen.test.demo.teco.online
       http:
         paths:
           - backend:
               serviceName: zen
               servicePort: http
             path: /
-  tls:
-    - hosts:
-        - zen.hubau.cloud
-      secretName: zen-ingress
