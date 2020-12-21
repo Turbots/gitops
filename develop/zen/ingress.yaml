@@ -16,6 +16,11 @@ spec:
               serviceName: zen
               servicePort: http
             path: /
+      https:
+        paths:
+          - backend:
+              serviceName: zen
+              servicePort: https
   tls:	
     - hosts:	
         - zen.test.demo.teco.online
