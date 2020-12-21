@@ -16,3 +16,7 @@ spec:
               serviceName: zen
               servicePort: http
             path: /
+  tls:	
+    - hosts:	
+        - zen.test.demo.teco.online
+      secretName: zen-ingress	
