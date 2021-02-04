@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: zen
-          image: harbor.hubau.cloud/library/zen:b4.20201209.172743
+          image: dhubau/zen
           imagePullPolicy: Always
           env:
             - name: NODE_NAME
