@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: zen
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: zen
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: zen
-          image: harbor.svc.tieto1.1-4.fi.teco.online/tanzu/zen:b7.20201221.151042
+          image: dhubau/zen
           imagePullPolicy: Always
           env:
             - name: NODE_NAME
