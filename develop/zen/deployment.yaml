@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: zen
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: zen
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: zen
-          image: harbor.tanzu.be/library/zen@sha256:4e2e5d6cdd8e414551e3bf5a2792b751b2d40839257eda91807db06f18c6345c
+          image: harbor.tanzu.be/library/zen@sha256:31054b1cf1edd2ae1cd65fd5622f9680b090d6278723589aa686a8e1399b83e7
           imagePullPolicy: Always
           env:
             - name: NODE_NAME
