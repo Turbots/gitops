@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: zen
-          image: harbor.tanzu.be/library/zen@sha256:934599e5a6803392f6a6f36cec215d06274f1be7a3fa1fcd1d0306e6a93ec0de
+          image: harbor.tanzu.be/library/zen@sha256:d7bc0ba4703d950c1b9a9fb27d24c4fe1b13613e05fa0b51de473b86b1670095
           imagePullPolicy: Always
           env:
             - name: NODE_NAME
