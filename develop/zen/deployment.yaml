@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: zen
-          image: harbor.tanzu.be/library/zen@sha256:d7bc0ba4703d950c1b9a9fb27d24c4fe1b13613e05fa0b51de473b86b1670095
+          image: harbor.tanzu.be/library/zen@sha256:0264fe333eb0ac78317249472be65e652be5487122092f3bd2f8548d1f2bde84
           imagePullPolicy: Always
           env:
             - name: NODE_NAME
@@ -30,13 +30,13 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
           livenessProbe:
-            initialDelaySeconds: 30
+            initialDelaySeconds: 20
             periodSeconds: 3
             httpGet:
               path: /actuator/health/liveness
               port: 8080
           readinessProbe:
-            initialDelaySeconds: 30
+            initialDelaySeconds: 20
             periodSeconds: 10
             httpGet:
               path: /actuator/health/readiness
