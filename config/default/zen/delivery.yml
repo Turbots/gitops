@@ -46,7 +46,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dhubau.azurecr.io/dhubau/zen-default@sha256:6dc525e2fe1a065cebe882bae3ed0c6d686d043a218a3d08641c537152956372
+        image: dhubau.azurecr.io/dhubau/zen-default@sha256:18594e7fa2520124a79f33e3e638047b5f8aa4ef741f688d39db9c1361b23520
         livenessProbe:
           httpGet:
             path: /livez
