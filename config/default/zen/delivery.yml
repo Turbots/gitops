@@ -13,6 +13,8 @@ spec:
   template:
     metadata:
       annotations:
+        autoscaling.knative.dev/maxScale: "10"
+        autoscaling.knative.dev/minScale: "2"
         boot.spring.io/actuator: http://:8081/actuator
         boot.spring.io/version: 2.7.1
         conventions.apps.tanzu.vmware.com/applied-conventions: |-
@@ -46,7 +48,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dhubau.azurecr.io/dhubau/zen-default@sha256:be72313ed3bcb0387bd1a7639b09fbabd04581dd9cd4969a47374005719e67d3
+        image: dhubau.azurecr.io/dhubau/zen-default@sha256:8cf96d3c74b2b41488a2b4bd2eb55e782dc74d5dd530bf392b4bc7345235cfec
         livenessProbe:
           httpGet:
             path: /livez
