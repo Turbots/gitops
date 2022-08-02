@@ -1,17 +1,3 @@
----
-apiVersion: kapp.k14s.io/v1alpha1
-kind: Config
-rebaseRules:
-  - path: [metadata, annotations, serving.knative.dev/creator]
-    type: copy
-    sources: [new, existing]
-    resourceMatchers: &matchers
-      - apiVersionKindMatcher: {apiVersion: serving.knative.dev/v1, kind: Service}
-  - path: [metadata, annotations, serving.knative.dev/lastModifier]
-    type: copy
-    sources: [new, existing]
-    resourceMatchers: *matchers
----
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
@@ -62,7 +48,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dhubau.azurecr.io/dhubau/zen-default@sha256:b1f5b325ae94c6196319cfe8496accb0a7aca48d4553fe5019c8e978bcf5fadf
+        image: dhubau.azurecr.io/dhubau/zen-default@sha256:694e8c53005415dff0b39c74d9617056c2611b4896e62d3e235e9d8a302bb409
         livenessProbe:
           httpGet:
             path: /livez
