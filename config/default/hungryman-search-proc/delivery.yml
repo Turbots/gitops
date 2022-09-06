@@ -50,7 +50,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080"
-        image: dhubau.azurecr.io/dhubau/hungryman-search-proc-default@sha256:5a529197561d19e6cccb7c7791a10698bd892ed34b14de6fd2ae4614ea40837d
+        image: dhubau.azurecr.io/dhubau/hungryman-search-proc-default@sha256:06c3aecd967357377e27413a4a3c45afa266fffb2ff3e56b1a36c57aefc1e1a0
         livenessProbe:
           httpGet:
             path: /livez
