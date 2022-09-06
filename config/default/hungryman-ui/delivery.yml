@@ -30,7 +30,7 @@ spec:
         networking.knative.dev/visibility: cluster-local
     spec:
       containers:
-      - image: dhubau.azurecr.io/dhubau/hungryman-ui-default@sha256:57f0a689eef6d850a0e2b998a456ca4b28b8e71d246f6bc008d5632d7583155c
+      - image: dhubau.azurecr.io/dhubau/hungryman-ui-default@sha256:78dbe524ff17d5ad6070fbf80647c3853219e5606c7af2959549f7a641d65c88
         name: workload
         resources: {}
         securityContext:
