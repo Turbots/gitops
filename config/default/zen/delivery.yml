@@ -63,7 +63,7 @@ spec:
               fieldPath: status.podIP
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dhubau.azurecr.io/dhubau/zen-default@sha256:db4a37116d117d7a99bd7625c02e42c8925e3ac1c637576f1cd8886fbe550e0a
+        image: dhubau.azurecr.io/dhubau/zen-default@sha256:299214abe5edb44f8e422787445b01005342a6b2b75abadeac56a861d7bf9751
         livenessProbe:
           httpGet:
             path: /livez
