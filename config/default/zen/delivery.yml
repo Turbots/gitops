@@ -17,13 +17,12 @@ spec:
         autoscaling.knative.dev/min-scale: "2"
         autoscaling.knative.dev/target: "10"
         boot.spring.io/actuator: http://:8081/actuator
-        boot.spring.io/version: 2.7.1
+        boot.spring.io/version: 3.0.0-M4
         conventions.apps.tanzu.vmware.com/applied-conventions: |-
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
           spring-boot-convention/spring-boot-actuator
-          spring-boot-convention/spring-boot-actuator-probes
           spring-boot-convention/service-intent-mysql
           appliveview-sample/app-live-view-appflavour-check
           appliveview-sample/app-live-view-connector-boot
@@ -31,7 +30,7 @@ spec:
           appliveview-sample/app-live-view-systemproperties
         developer.conventions/target-containers: workload
         kubectl.kubernetes.io/last-applied-configuration: |
-          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"zen-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web"},"name":"zen","namespace":"default"},"spec":{"env":[{"name":"NODE_NAME","valueFrom":{"fieldRef":{"fieldPath":"spec.nodeName"}}},{"name":"POD_NAME","valueFrom":{"fieldRef":{"fieldPath":"metadata.name"}}},{"name":"POD_IP","valueFrom":{"fieldRef":{"fieldPath":"status.podIP"}}}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/zen.git"}}}}
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"zen-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web"},"name":"zen","namespace":"default"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"}]},"env":[{"name":"NODE_NAME","valueFrom":{"fieldRef":{"fieldPath":"spec.nodeName"}}},{"name":"POD_NAME","valueFrom":{"fieldRef":{"fieldPath":"metadata.name"}}},{"name":"POD_IP","valueFrom":{"fieldRef":{"fieldPath":"status.podIP"}}}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/zen.git"}}}}
         services.conventions.apps.tanzu.vmware.com/mysql: mysql-connector-java/8.0.29
       labels:
         app.kubernetes.io/component: run
@@ -62,22 +61,12 @@ spec:
             fieldRef:
               fieldPath: status.podIP
         - name: JAVA_TOOL_OPTIONS
-          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dhubau.azurecr.io/dhubau/zen-default@sha256:ee804438d0f4a4677848af84249ff151ff500bb84276dd54799528381efae332
-        livenessProbe:
-          httpGet:
-            path: /livez
-            port: 8080
-            scheme: HTTP
+          value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: dhubau.azurecr.io/dhubau/zen-default@sha256:752b06a9503a7a55dbf04da42735065f42ab1383db7d666b45dedd0158351fcb
         name: workload
         ports:
         - containerPort: 8080
           protocol: TCP
-        readinessProbe:
-          httpGet:
-            path: /readyz
-            port: 8080
-            scheme: HTTP
         resources: {}
         securityContext:
           runAsUser: 1000
