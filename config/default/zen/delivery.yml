@@ -23,7 +23,7 @@ spec:
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
           spring-boot-convention/spring-boot-actuator
-          spring-boot-convention/service-intent-mysql
+          spring-boot-convention/service-intent-postgres
           appliveview-sample/app-live-view-appflavour-check
           appliveview-sample/app-live-view-connector-boot
           appliveview-sample/app-live-view-appflavours-boot
@@ -31,7 +31,7 @@ spec:
         developer.conventions/target-containers: workload
         kubectl.kubernetes.io/last-applied-configuration: |
           {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"zen-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web"},"name":"zen","namespace":"default"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"}]},"env":[{"name":"NODE_NAME","valueFrom":{"fieldRef":{"fieldPath":"spec.nodeName"}}},{"name":"POD_NAME","valueFrom":{"fieldRef":{"fieldPath":"metadata.name"}}},{"name":"POD_IP","valueFrom":{"fieldRef":{"fieldPath":"status.podIP"}}}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"services.apps.tanzu.vmware.com/v1alpha1","kind":"ResourceClaim","name":"zen-postgres-claim"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/zen.git"}}}}
-        services.conventions.apps.tanzu.vmware.com/mysql: mysql-connector-java/8.0.29
+        services.conventions.apps.tanzu.vmware.com/postgres: postgresql/42.4.0
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: zen-demo
@@ -40,7 +40,7 @@ spec:
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: zen
         conventions.apps.tanzu.vmware.com/framework: spring-boot
-        services.conventions.apps.tanzu.vmware.com/mysql: workload
+        services.conventions.apps.tanzu.vmware.com/postgres: workload
         tanzu.app.live.view: "true"
         tanzu.app.live.view.application.actuator.port: "8081"
         tanzu.app.live.view.application.flavours: spring-boot
@@ -62,7 +62,7 @@ spec:
               fieldPath: status.podIP
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dhubau.azurecr.io/dhubau/zen-default@sha256:752b06a9503a7a55dbf04da42735065f42ab1383db7d666b45dedd0158351fcb
+        image: dhubau.azurecr.io/dhubau/zen-default@sha256:2392e37dea949494635b43532f4d77ebb4c3ee6378378942f4272aaa0f8081b0
         name: workload
         ports:
         - containerPort: 8080
