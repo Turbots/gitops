@@ -15,7 +15,7 @@ spec:
       annotations:
         autoscaling.knative.dev/max-scale: "10"
         autoscaling.knative.dev/min-scale: "2"
-        autoscaling.knative.dev/target: "11"
+        autoscaling.knative.dev/target: "10"
         boot.spring.io/actuator: http://:8081/actuator
         boot.spring.io/version: 3.0.0-M4
         conventions.apps.tanzu.vmware.com/applied-conventions: |-
