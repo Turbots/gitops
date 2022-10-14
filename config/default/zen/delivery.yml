@@ -63,7 +63,7 @@ spec:
               fieldPath: status.podIP
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dhubau.azurecr.io/dhubau/zen-default@sha256:5d8e4613baa5380e507c3b19a5faba489ed6be9bb2e8aebd1b8e036e6216a57d
+        image: dhubau.azurecr.io/dhubau/zen-default@sha256:038f80ff417857b8b42621c5601d7abdebabcdfd773b9c357b1536d9fdad28cc
         name: workload
         ports:
         - containerPort: 8080
