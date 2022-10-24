@@ -69,7 +69,7 @@ spec:
           value: blah
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dhubau.azurecr.io/dhubau/zen-team-tanzu@sha256:fd8102c71f0b23296a8e07bb5d67ff75490318f9ca9e60b54657f35ecb86cc3a
+        image: dhubau.azurecr.io/dhubau/zen-team-tanzu@sha256:de85583912e13845e53066e0f22db18f5386dc948a372f6a33283d44a42b69ab
         name: workload
         ports:
         - containerPort: 8080
