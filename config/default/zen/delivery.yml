@@ -26,13 +26,11 @@ spec:
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
           spring-boot-convention/spring-boot-actuator
-          spring-boot-convention/service-intent-postgres
           appliveview-sample/app-live-view-appflavour-check
           appliveview-sample/app-live-view-connector-boot
           appliveview-sample/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-systemproperties
         developer.conventions/target-containers: workload
-        services.conventions.apps.tanzu.vmware.com/postgres: postgresql/42.5.0
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: zen-demo
@@ -41,7 +39,6 @@ spec:
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: zen
         conventions.apps.tanzu.vmware.com/framework: spring-boot
-        services.conventions.apps.tanzu.vmware.com/postgres: workload
         tanzu.app.live.view: "true"
         tanzu.app.live.view.application.actuator.port: "8081"
         tanzu.app.live.view.application.flavours: spring-boot
@@ -63,7 +60,7 @@ spec:
               fieldPath: status.podIP
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dhubau.azurecr.io/dhubau/zen-default@sha256:8040e094d5c102b9185f47d0457131c738edc4e502f611ced40a004e5cd1a708
+        image: dhubau.azurecr.io/dhubau/zen-default@sha256:9332415a260332533cef11a6e5ec7296c8f39c9f3fe5d600e3fad245565b287a
         name: workload
         ports:
         - containerPort: 8080
