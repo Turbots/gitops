@@ -1,0 +1,53 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: confirmation
+  annotations:
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+  labels:
+    app.kubernetes.io/part-of: payment-demo
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/pipeline: test
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/component: run
+    carto.run/workload-name: confirmation
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/max-scale: "10"
+        autoscaling.knative.dev/min-scale: "2"
+        autoscaling.knative.dev/target: "10"
+        boot.spring.io/version: 3.0.0-RC1
+        conventions.carto.run/applied-conventions: |-
+          spring-boot-convention/spring-boot
+          spring-boot-convention/spring-boot-web
+          spring-boot-convention/service-intent-rabbitmq
+          appliveview-sample/app-live-view-appflavour-check
+        developer.conventions/target-containers: workload
+        services.conventions.apps.tanzu.vmware.com/rabbitmq: amqp-client/5.16.0
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/part-of: payment-demo
+        apps.tanzu.vmware.com/has-tests: "true"
+        apps.tanzu.vmware.com/pipeline: test
+        apps.tanzu.vmware.com/workload-type: web
+        carto.run/workload-name: confirmation
+        conventions.apps.tanzu.vmware.com/framework: spring-boot
+        services.conventions.apps.tanzu.vmware.com/rabbitmq: workload
+    spec:
+      containers:
+      - env:
+        - name: JAVA_TOOL_OPTIONS
+          value: -Dserver.port="8080"
+        image: harbor.vsphere.hubau.cloud/library/confirmation-team-tanzu@sha256:4a2830ad48b0fc0f0645fa30b098e5b7dcd2fdb4569ef4df57362002a7fc83ac
+        name: workload
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+      serviceAccountName: default
+
