@@ -10,8 +10,6 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/pipeline: test
     apps.tanzu.vmware.com/workload-type: web
-    kapp.k14s.io/app: "1667611307118447000"
-    kapp.k14s.io/association: v1.a4086de559442dcaa034e5328c7135af
     app.kubernetes.io/component: run
     carto.run/workload-name: account
 spec:
@@ -35,9 +33,6 @@ spec:
           appliveview-sample/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-systemproperties
         developer.conventions/target-containers: workload
-        kapp.k14s.io/identity: v1;team-tanzu/carto.run/Workload/account;carto.run/v1alpha1
-        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"payment-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1667611307118447000","kapp.k14s.io/association":"v1.a4086de559442dcaa034e5328c7135af"},"name":"account","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"}]},"env":[{"name":"PAYMENTS_HOST","value":"payment-service:8080"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"account-db"}},{"name":"broker","ref":{"apiVersion":"rabbitmq.com/v1beta1","kind":"RabbitmqCluster","name":"rabbit"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/tanzu-demo.git"},"subPath":"account-service"}}}'
-        kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
         services.conventions.apps.tanzu.vmware.com/postgres: postgresql/42.5.0
         services.conventions.apps.tanzu.vmware.com/rabbitmq: amqp-client/5.16.0
       labels:
@@ -48,8 +43,6 @@ spec:
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: account
         conventions.apps.tanzu.vmware.com/framework: spring-boot
-        kapp.k14s.io/app: "1667611307118447000"
-        kapp.k14s.io/association: v1.a4086de559442dcaa034e5328c7135af
         services.conventions.apps.tanzu.vmware.com/postgres: workload
         services.conventions.apps.tanzu.vmware.com/rabbitmq: workload
         tanzu.app.live.view: "true"
@@ -63,7 +56,7 @@ spec:
           value: payment.team-tanzu
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.vsphere.hubau.cloud/library/account-team-tanzu@sha256:ffe2b8e158061e7345167fc28dd2e4558cbe172a33a34f5db75a06db439bf070
+        image: harbor.vsphere.hubau.cloud/library/account-team-tanzu@sha256:3c116fb1c0ef6235497bb25e9d452a8112c1a72c5bfa7620c7ddcd61696c4bfb
         name: workload
         ports:
         - containerPort: 8080
