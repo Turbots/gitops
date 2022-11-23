@@ -56,7 +56,7 @@ spec:
           value: payment.team-tanzu
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.vsphere.hubau.cloud/library/account-team-tanzu@sha256:3c116fb1c0ef6235497bb25e9d452a8112c1a72c5bfa7620c7ddcd61696c4bfb
+        image: harbor.vsphere.hubau.cloud/library/account-team-tanzu@sha256:e23ab9e8c02a047d9be4e58a5c28030904f31a769f378f2d23a2462d9bc1150a
         name: workload
         ports:
         - containerPort: 8080
