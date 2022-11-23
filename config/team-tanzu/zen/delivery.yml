@@ -61,6 +61,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
+        - name: SPRING_JPA_DATABASE_PLATFORM
+          value: org.hibernate.dialect.PostgreSQLDialect
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
         image: harbor.vsphere.hubau.cloud/library/zen-team-tanzu@sha256:d55a7bc7292f54519cd2f2611eb7fcd9ecbd31c86bbeadb9e6e4e997af0f783b
