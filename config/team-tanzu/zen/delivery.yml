@@ -65,7 +65,7 @@ spec:
           value: org.hibernate.dialect.PostgreSQLDialect
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.vsphere.hubau.cloud/library/zen-team-tanzu@sha256:d7183b42d0464006d95b76426220665d1a39ebd8311155ef62634069c740e1a5
+        image: harbor.vsphere.hubau.cloud/library/zen-team-tanzu@sha256:9bcfbfda0a3472717a939f38c810bcfb148c5db80796cf58097a5ca9e719c23d
         name: workload
         ports:
         - containerPort: 8080
