@@ -7,6 +7,7 @@ metadata:
     ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
   labels:
     app.kubernetes.io/part-of: payment-demo
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/pipeline: test
     apps.tanzu.vmware.com/workload-type: web
@@ -56,7 +57,7 @@ spec:
           value: payment.team-tanzu
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.vsphere.hubau.cloud/library/account-team-tanzu@sha256:4c1f816e0f3caf2482191eabb27ce37a8c9be13cddd67552cf77f3820fa6c34e
+        image: harbor.vsphere.hubau.cloud/library/account-team-tanzu@sha256:2cfef7540d407f6903b31cbee41705b1e6294a2bc94a054cfa45507834d4684b
         name: workload
         ports:
         - containerPort: 8080
