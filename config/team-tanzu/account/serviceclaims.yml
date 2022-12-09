@@ -8,6 +8,7 @@ metadata:
     autoscaling.knative.dev/target: "10"
   labels:
     app.kubernetes.io/part-of: payment-demo
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/pipeline: test
     apps.tanzu.vmware.com/workload-type: web
@@ -34,6 +35,7 @@ metadata:
     autoscaling.knative.dev/target: "10"
   labels:
     app.kubernetes.io/part-of: payment-demo
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/pipeline: test
     apps.tanzu.vmware.com/workload-type: web
