@@ -1,0 +1,33 @@
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: services
+  namespace: team-tanzu
+spec:
+  serviceAccountName: default
+  fetch:
+  - git:
+      url: https://github.com/Turbots/tanzu-demo.git
+      ref: origin/main
+      subPath: config/services
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: deliverables
+spec:
+  serviceAccountName: default
+  fetch:
+  - git:
+      url: https://github.com/Turbots/tanzu-demo.git
+      ref: origin/main
+      subPath: config/deliverables
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
