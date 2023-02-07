@@ -18,8 +18,9 @@ kind: ServiceBinding
 metadata:
   name: payment-db
   annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"payment-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web"},"name":"payment","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"},{"name":"BP_MAVEN_BUILD_ARGUMENTS","value":"-Dmaven.test.skip=true package"}]},"env":[{"name":"PAYMENTS_HOST","value":"payment-service:8080"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}},{"name":"labels","value":{"networking.knative.dev/visibility":"cluster-local"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"payment-db"}},{"name":"broker","ref":{"apiVersion":"rabbitmq.com/v1beta1","kind":"RabbitmqCluster","name":"rabbit"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/tanzu-demo.git"},"subPath":"payment-service"}}}
+    kapp.k14s.io/identity: v1;team-tanzu/carto.run/Workload/payment;carto.run/v1alpha1
+    kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"payment-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1675726456173415138","kapp.k14s.io/association":"v1.512b9db28ae567f8ac011e6705662d13"},"name":"payment","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"},{"name":"BP_MAVEN_BUILD_ARGUMENTS","value":"-Dmaven.test.skip=true package"}]},"env":[{"name":"PAYMENTS_HOST","value":"payment-service:8080"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}},{"name":"labels","value":{"networking.knative.dev/visibility":"cluster-local"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"payment-db"}},{"name":"broker","ref":{"apiVersion":"rabbitmq.com/v1beta1","kind":"RabbitmqCluster","name":"rabbit"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/tanzu-demo.git"},"subPath":"payment-service"}}}'
+    kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
     autoscaling.knative.dev/max-scale: "10"
     autoscaling.knative.dev/min-scale: "2"
     autoscaling.knative.dev/target: "10"
@@ -28,6 +29,8 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/pipeline: test
     apps.tanzu.vmware.com/workload-type: web
+    kapp.k14s.io/app: "1675726456173415138"
+    kapp.k14s.io/association: v1.512b9db28ae567f8ac011e6705662d13
     app.kubernetes.io/component: run
     carto.run/workload-name: payment
 spec:
@@ -46,8 +49,9 @@ kind: ServiceBinding
 metadata:
   name: payment-broker
   annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"payment-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web"},"name":"payment","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"},{"name":"BP_MAVEN_BUILD_ARGUMENTS","value":"-Dmaven.test.skip=true package"}]},"env":[{"name":"PAYMENTS_HOST","value":"payment-service:8080"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}},{"name":"labels","value":{"networking.knative.dev/visibility":"cluster-local"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"payment-db"}},{"name":"broker","ref":{"apiVersion":"rabbitmq.com/v1beta1","kind":"RabbitmqCluster","name":"rabbit"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/tanzu-demo.git"},"subPath":"payment-service"}}}
+    kapp.k14s.io/identity: v1;team-tanzu/carto.run/Workload/payment;carto.run/v1alpha1
+    kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"payment-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1675726456173415138","kapp.k14s.io/association":"v1.512b9db28ae567f8ac011e6705662d13"},"name":"payment","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"},{"name":"BP_MAVEN_BUILD_ARGUMENTS","value":"-Dmaven.test.skip=true package"}]},"env":[{"name":"PAYMENTS_HOST","value":"payment-service:8080"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}},{"name":"labels","value":{"networking.knative.dev/visibility":"cluster-local"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"payment-db"}},{"name":"broker","ref":{"apiVersion":"rabbitmq.com/v1beta1","kind":"RabbitmqCluster","name":"rabbit"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/tanzu-demo.git"},"subPath":"payment-service"}}}'
+    kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
     autoscaling.knative.dev/max-scale: "10"
     autoscaling.knative.dev/min-scale: "2"
     autoscaling.knative.dev/target: "10"
@@ -56,6 +60,8 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/pipeline: test
     apps.tanzu.vmware.com/workload-type: web
+    kapp.k14s.io/app: "1675726456173415138"
+    kapp.k14s.io/association: v1.512b9db28ae567f8ac011e6705662d13
     app.kubernetes.io/component: run
     carto.run/workload-name: payment
 spec:
