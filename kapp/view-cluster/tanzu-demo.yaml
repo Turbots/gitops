@@ -2,7 +2,7 @@
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
 metadata:
-  name: services
+  name: catalog
   namespace: team-tanzu
 spec:
   serviceAccountName: default
