@@ -1,0 +1,16 @@
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: services
+  namespace: team-tanzu
+spec:
+  serviceAccountName: default
+  fetch:
+  - git:
+      url: https://github.com/Turbots/tanzu-demo-catalog.git
+      ref: origin/main
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
