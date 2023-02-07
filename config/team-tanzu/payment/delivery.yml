@@ -10,6 +10,8 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/pipeline: test
     apps.tanzu.vmware.com/workload-type: web
+    kapp.k14s.io/app: "1675726456173415138"
+    kapp.k14s.io/association: v1.512b9db28ae567f8ac011e6705662d13
     app.kubernetes.io/component: run
     carto.run/workload-name: payment
 spec:
@@ -33,8 +35,9 @@ spec:
           spring-boot-convention/service-intent-rabbitmq
           appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
-        kubectl.kubernetes.io/last-applied-configuration: |
-          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"payment-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web"},"name":"payment","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"},{"name":"BP_MAVEN_BUILD_ARGUMENTS","value":"-Dmaven.test.skip=true package"}]},"env":[{"name":"PAYMENTS_HOST","value":"payment-service:8080"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}},{"name":"labels","value":{"networking.knative.dev/visibility":"cluster-local"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"payment-db"}},{"name":"broker","ref":{"apiVersion":"rabbitmq.com/v1beta1","kind":"RabbitmqCluster","name":"rabbit"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/tanzu-demo.git"},"subPath":"payment-service"}}}
+        kapp.k14s.io/identity: v1;team-tanzu/carto.run/Workload/payment;carto.run/v1alpha1
+        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"payment-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1675726456173415138","kapp.k14s.io/association":"v1.512b9db28ae567f8ac011e6705662d13"},"name":"payment","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"},{"name":"BP_MAVEN_BUILD_ARGUMENTS","value":"-Dmaven.test.skip=true package"}]},"env":[{"name":"PAYMENTS_HOST","value":"payment-service:8080"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}},{"name":"labels","value":{"networking.knative.dev/visibility":"cluster-local"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"payment-db"}},{"name":"broker","ref":{"apiVersion":"rabbitmq.com/v1beta1","kind":"RabbitmqCluster","name":"rabbit"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/tanzu-demo.git"},"subPath":"payment-service"}}}'
+        kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
         services.conventions.carto.run/postgres: postgresql/42.5.0
         services.conventions.carto.run/rabbitmq: amqp-client/5.16.0
       labels:
@@ -46,6 +49,8 @@ spec:
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: payment
         conventions.carto.run/framework: spring-boot
+        kapp.k14s.io/app: "1675726456173415138"
+        kapp.k14s.io/association: v1.512b9db28ae567f8ac011e6705662d13
         services.conventions.carto.run/postgres: workload
         services.conventions.carto.run/rabbitmq: workload
         tanzu.app.live.view: "true"
@@ -60,7 +65,7 @@ spec:
           value: payment-service:8080
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.vsphere.hubau.cloud/library/workloads/payment-team-tanzu@sha256:a7c2367369a48ac5960ad4d20803945309b96376281c942256f635794959e53d
+        image: harbor.vsphere.hubau.cloud/library/workloads/payment-team-tanzu@sha256:95dfa47a6790ca7f5e5838a3b96c3473c97763d4e1160cd84aa5c27ca5dd8e6b
         name: workload
         ports:
         - containerPort: 8080
