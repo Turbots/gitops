@@ -65,7 +65,7 @@ spec:
           value: payment-service:8080
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.vsphere.hubau.cloud/library/workloads/payment-team-tanzu@sha256:cdc2328f9c7956f9665701df50d4e9608339323ccfc6fb01ac0fa6c8e728a346
+        image: harbor.vsphere.hubau.cloud/library/workloads/payment-team-tanzu@sha256:10f152ede70257e13999cac42bc108ce9ed6fd913cc236f77dc4808632ce6fd0
         name: workload
         ports:
         - containerPort: 8080
