@@ -62,7 +62,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080"
-        image: harbor.vsphere.hubau.cloud/library/workloads/confirmation-team-tanzu@sha256:927a3039c512d1e53fadcd937b1c09743bfb91574cb01586e751cab4bb3d27b5
+        image: harbor.vsphere.hubau.cloud/library/workloads/confirmation-team-tanzu@sha256:2f3d0392a61a6b4f5e349dc12ae3a9f84d733164d66aa28228e1e947b632077c
         name: workload
         ports:
         - containerPort: 8080
