@@ -1,0 +1,17 @@
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: cloudfusion-tap
+  namespace: team-tanzu
+spec:
+  serviceAccountName: default
+  fetch:
+  - git:
+      url: https://github.com/Turbots/cloudfusion-tap
+      ref: origin/main
+      subPath: config/run
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
