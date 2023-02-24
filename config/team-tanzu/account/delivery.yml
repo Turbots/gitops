@@ -11,7 +11,7 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/pipeline: test
     apps.tanzu.vmware.com/workload-type: web
-    kapp.k14s.io/app: "1675726456173415138"
+    kapp.k14s.io/app: "1677201049979762637"
     kapp.k14s.io/association: v1.a4086de559442dcaa034e5328c7135af
     app.kubernetes.io/component: run
     carto.run/workload-name: account
@@ -38,7 +38,7 @@ spec:
           appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         kapp.k14s.io/identity: v1;team-tanzu/carto.run/Workload/account;carto.run/v1alpha1
-        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"payment-demo","apps.tanzu.vmware.com/auto-configure-actuators":"true","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1675726456173415138","kapp.k14s.io/association":"v1.a4086de559442dcaa034e5328c7135af"},"name":"account","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"},{"name":"BP_MAVEN_BUILD_ARGUMENTS","value":"-Dmaven.test.skip=true package"}]},"env":[{"name":"PAYMENTS_HOST","value":"payment.team-tanzu"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"account-db"}},{"name":"broker","ref":{"apiVersion":"rabbitmq.com/v1beta1","kind":"RabbitmqCluster","name":"rabbit"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/tanzu-demo.git"},"subPath":"account-service"}}}'
+        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"payment-demo","apps.tanzu.vmware.com/auto-configure-actuators":"true","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1677201049979762637","kapp.k14s.io/association":"v1.a4086de559442dcaa034e5328c7135af"},"name":"account","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"},{"name":"BP_MAVEN_BUILD_ARGUMENTS","value":"-Dmaven.test.skip=true package"}]},"env":[{"name":"PAYMENTS_HOST","value":"payment.team-tanzu"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/max-scale":"10","autoscaling.knative.dev/min-scale":"2","autoscaling.knative.dev/target":"10"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"account-db"}},{"name":"broker","ref":{"apiVersion":"rabbitmq.com/v1beta1","kind":"RabbitmqCluster","name":"rabbit"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/tanzu-demo.git"},"subPath":"account-service"}}}'
         kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
         services.conventions.carto.run/postgres: postgresql/42.5.0
         services.conventions.carto.run/rabbitmq: amqp-client/5.16.0
@@ -51,7 +51,7 @@ spec:
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: account
         conventions.carto.run/framework: spring-boot
-        kapp.k14s.io/app: "1675726456173415138"
+        kapp.k14s.io/app: "1677201049979762637"
         kapp.k14s.io/association: v1.a4086de559442dcaa034e5328c7135af
         services.conventions.carto.run/postgres: workload
         services.conventions.carto.run/rabbitmq: workload
@@ -67,7 +67,7 @@ spec:
           value: payment.team-tanzu
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.vsphere.hubau.cloud/library/workloads/account-team-tanzu@sha256:65df2c32856d329ae3ff497e616260538ce7a983f5ccaf205ee490d689b96f20
+        image: harbor.vsphere.hubau.cloud/library/workloads/account-team-tanzu@sha256:28a62e5530cb086e5af11f9c42088081fb58991f705bbbbdaa779856609353a9
         name: workload
         ports:
         - containerPort: 8080
