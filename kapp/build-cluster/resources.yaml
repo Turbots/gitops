@@ -2,15 +2,15 @@
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
 metadata:
-  name: services
+  name: cloudfusion-tap
   namespace: team-tanzu
 spec:
   serviceAccountName: default
   fetch:
   - git:
-      url: https://github.com/Turbots/tanzu-demo.git
+      url: https://github.com/Turbots/cloudfusion-tap.git
       ref: origin/main
-      subPath: config/services
+      subPath: config/build
   template:
   - ytt: {}
   deploy:
@@ -19,14 +19,31 @@ spec:
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
 metadata:
-  name: deliverables
+  name: supplychain-config
+  namespace: team-tanzu
 spec:
   serviceAccountName: default
   fetch:
   - git:
       url: https://github.com/Turbots/tanzu-demo.git
       ref: origin/main
-      subPath: config/deliverables
+      subPath: config/supplychain
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: workloads
+spec:
+  serviceAccountName: default
+  fetch:
+  - git:
+      url: https://github.com/Turbots/tanzu-demo.git
+      ref: origin/main
+      subPath: config/workloads
   template:
   - ytt: {}
   deploy:

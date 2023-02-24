@@ -1,0 +1,77 @@
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: cloudfusion-tap
+  namespace: team-tanzu
+spec:
+  serviceAccountName: default
+  fetch:
+  - git:
+      url: https://github.com/Turbots/cloudfusion-tap
+      ref: origin/main
+      subPath: config/run
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
+---
+apiVersion: carto.run/v1alpha1
+kind: ClusterDelivery
+metadata:
+  name: delivery-worker
+spec:
+  resources:
+  - name: source-provider
+    params:
+    - default: default
+      name: serviceAccount
+    - name: gitImplementation
+      value: go-git
+    templateRef:
+      kind: ClusterSourceTemplate
+      name: delivery-source-template
+  - deployment:
+      resource: source-provider
+    name: deployer
+    params:
+    - default: default
+      name: serviceAccount
+    templateRef:
+      kind: ClusterDeploymentTemplate
+      name: app-deploy
+  selector:
+    app.tanzu.vmware.com/deliverable-type: worker
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: services
+  namespace: team-tanzu
+spec:
+  serviceAccountName: default
+  fetch:
+  - git:
+      url: https://github.com/Turbots/tanzu-demo.git
+      ref: origin/main
+      subPath: config/services
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: deliverables
+spec:
+  serviceAccountName: default
+  fetch:
+  - git:
+      url: https://github.com/Turbots/tanzu-demo.git
+      ref: origin/main
+      subPath: config/deliverables
+  template:
+  - ytt: {}
+  deploy:
+  - kapp: {}
