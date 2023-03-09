@@ -9,10 +9,8 @@ metadata:
     apis.apps.tanzu.vmware.com/register-api: "true"
     app.kubernetes.io/part-of: cloudfusion-tap
     apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/pipeline: test-with-maven
+    apps.tanzu.vmware.com/pipeline: test
     apps.tanzu.vmware.com/workload-type: web
-    kapp.k14s.io/app: "1677201049388159395"
-    kapp.k14s.io/association: v1.a01041cd20aa30b5737c7e459931e164
     app.kubernetes.io/component: run
     carto.run/workload-name: cloudfusion-tap
 spec:
@@ -20,48 +18,43 @@ spec:
     metadata:
       annotations:
         autoscaling.knative.dev/minScale: "1"
+        boot.spring.io/actuator: http://:8081/actuator
         boot.spring.io/version: 3.0.2
         conventions.carto.run/applied-conventions: |-
-          spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
           spring-boot-convention/spring-boot-actuator
           spring-boot-convention/spring-boot-actuator-probes
-          spring-boot-convention/app-live-view-appflavour-check
-          spring-boot-convention/app-live-view-connector-boot
-          spring-boot-convention/app-live-view-appflavours-boot
           spring-boot-convention/service-intent-postgres
           appliveview-sample/app-live-view-appflavour-check
+          appliveview-sample/app-live-view-connector-boot
+          appliveview-sample/app-live-view-appflavours-boot
+          appliveview-sample/app-live-view-systemproperties
         developer.conventions/target-containers: workload
-        kapp.k14s.io/identity: v1;team-tanzu/carto.run/Workload/cloudfusion-tap;carto.run/v1alpha1
-        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"apis.apps.tanzu.vmware.com/register-api":"true","app.kubernetes.io/part-of":"cloudfusion-tap","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test-with-maven","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1677201049388159395","kapp.k14s.io/association":"v1.a01041cd20aa30b5737c7e459931e164"},"name":"cloudfusion-tap","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"}]},"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"api_descriptor","value":{"description":"CloudFusion REST API built using Spring Boot powered by Tanzu Application Platform Accelerators","location":{"path":"/api-docs"},"owner":"team-tanzu","system":"cloudfusion","type":"openapi"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"customer-profile-database"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/cloudfusion-tap.git"}}}}'
-        kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
-        services.conventions.carto.run/postgres: postgresql/42.5.1
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"apis.apps.tanzu.vmware.com/register-api":"true","app.kubernetes.io/part-of":"cloudfusion-tap","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web"},"name":"cloudfusion-tap","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"}]},"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"api_descriptor","value":{"description":"CloudFusion REST API built using Spring Boot powered by Tanzu Application Platform Accelerators","location":{"path":"/v3/api-docs"},"owner":"team-tanzu","system":"cloudfusion","type":"openapi"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"cloudfusion-tap-database"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/cloudfusion-tap.git"}}}}
+        services.conventions.apps.tanzu.vmware.com/postgres: postgresql/42.5.1
       labels:
         apis.apps.tanzu.vmware.com/register-api: "true"
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: cloudfusion-tap
-        apps.tanzu.vmware.com/auto-configure-actuators: "false"
         apps.tanzu.vmware.com/has-tests: "true"
-        apps.tanzu.vmware.com/pipeline: test-with-maven
+        apps.tanzu.vmware.com/pipeline: test
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: cloudfusion-tap
-        conventions.carto.run/framework: spring-boot
-        kapp.k14s.io/app: "1677201049388159395"
-        kapp.k14s.io/association: v1.a01041cd20aa30b5737c7e459931e164
-        services.conventions.carto.run/postgres: workload
+        conventions.apps.tanzu.vmware.com/framework: spring-boot
+        services.conventions.apps.tanzu.vmware.com/postgres: workload
         tanzu.app.live.view: "true"
-        tanzu.app.live.view.application.actuator.path: actuator
-        tanzu.app.live.view.application.actuator.port: "8080"
+        tanzu.app.live.view.application.actuator.port: "8081"
         tanzu.app.live.view.application.flavours: spring-boot
         tanzu.app.live.view.application.name: cloudfusion-tap
     spec:
       containers:
       - env:
         - name: JAVA_TOOL_OPTIONS
-          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.vsphere.hubau.cloud/library/workloads/cloudfusion-tap-team-tanzu@sha256:4c4dbe0a5644fda02e3a654c514c0d3a588f885f9ccd42a997ec967e736c24a1
+          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: harbor.vmc.tanzu.be/library/cloudfusion-tap-team-tanzu@sha256:3b62e909836f6896cea5101f3d1c70f51ce87a9c16f822fb1d7a55344abd9c75
         livenessProbe:
           httpGet:
             path: /livez
