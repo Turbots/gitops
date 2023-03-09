@@ -1,35 +1,17 @@
-apiVersion: kapp.k14s.io/v1alpha1
-kind: Config
-waitRules:
-- conditionMatchers:
-  - type: ServiceAvailable
-    status: "False"
-    failure: true
-  - type: ServiceAvailable
-    status: "True"
-    success: true
-  resourceMatchers:
-  - apiVersionKindMatcher:
-      apiVersion: servicebinding.io/v1alpha3
-      kind: ServiceBinding
----
 apiVersion: servicebinding.io/v1alpha3
 kind: ServiceBinding
 metadata:
   name: cloudfusion-tap-db
   annotations:
-    kapp.k14s.io/identity: v1;team-tanzu/carto.run/Workload/cloudfusion-tap;carto.run/v1alpha1
-    kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"apis.apps.tanzu.vmware.com/register-api":"true","app.kubernetes.io/part-of":"cloudfusion-tap","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test-with-maven","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1677201049388159395","kapp.k14s.io/association":"v1.a01041cd20aa30b5737c7e459931e164"},"name":"cloudfusion-tap","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"}]},"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"api_descriptor","value":{"description":"CloudFusion REST API built using Spring Boot powered by Tanzu Application Platform Accelerators","location":{"path":"/api-docs"},"owner":"team-tanzu","system":"cloudfusion","type":"openapi"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"customer-profile-database"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/cloudfusion-tap.git"}}}}'
-    kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"apis.apps.tanzu.vmware.com/register-api":"true","app.kubernetes.io/part-of":"cloudfusion-tap","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/pipeline":"test","apps.tanzu.vmware.com/workload-type":"web"},"name":"cloudfusion-tap","namespace":"team-tanzu"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"}]},"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"api_descriptor","value":{"description":"CloudFusion REST API built using Spring Boot powered by Tanzu Application Platform Accelerators","location":{"path":"/v3/api-docs"},"owner":"team-tanzu","system":"cloudfusion","type":"openapi"}}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"sql.tanzu.vmware.com/v1","kind":"Postgres","name":"cloudfusion-tap-database"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/Turbots/cloudfusion-tap.git"}}}}
     autoscaling.knative.dev/minScale: "1"
   labels:
     apis.apps.tanzu.vmware.com/register-api: "true"
     app.kubernetes.io/part-of: cloudfusion-tap
     apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/pipeline: test-with-maven
+    apps.tanzu.vmware.com/pipeline: test
     apps.tanzu.vmware.com/workload-type: web
-    kapp.k14s.io/app: "1677201049388159395"
-    kapp.k14s.io/association: v1.a01041cd20aa30b5737c7e459931e164
     app.kubernetes.io/component: run
     carto.run/workload-name: cloudfusion-tap
 spec:
@@ -37,7 +19,7 @@ spec:
   service:
     apiVersion: sql.tanzu.vmware.com/v1
     kind: Postgres
-    name: customer-profile-database
+    name: cloudfusion-tap-database
   workload:
     apiVersion: serving.knative.dev/v1
     kind: Service
