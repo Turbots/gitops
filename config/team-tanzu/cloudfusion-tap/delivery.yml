@@ -54,7 +54,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.vmc.tanzu.be/library/cloudfusion-tap-team-tanzu@sha256:7424ce27c500c3d170f1e727a1b179c1e012465174ca464aab440d6994022b33
+        image: harbor.vmc.tanzu.be/library/cloudfusion-tap-team-tanzu@sha256:c294c31647038343111cc86397183931b0fbea89777608683bc2d674a372253c
         livenessProbe:
           httpGet:
             path: /livez
